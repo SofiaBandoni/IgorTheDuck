@@ -1,0 +1,4 @@
+DAGId;DAGName;GitHubLink;ConfluenceLink
+1;stgPrevalencia;https://github.com/datamanagement-team/airflow/tree/main/traficoprevalencia;https://docucio.telecom.com.ar/display/AAYBD/stgPrevalencia
+2;stgTraficoDatosMovil;https://github.com/datamanagement-team/airflow/tree/main/stgTraficoDatos;https://docucio.telecom.com.ar/display/AAYBD/stgTraficoDatosMovil
+3;stg-saldo-movil;https://github.com/datamanagement-team/airflow/tree/main/saldoprepago;https://docucio.telecom.com.ar/display/AAYBD/stgSaldoMovil
