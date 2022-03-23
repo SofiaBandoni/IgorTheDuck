@@ -11,9 +11,11 @@ def get_repositories():
     html_content = response.content
     dom = BeautifulSoup(html_content, 'html.parser')
     all_folders = dom.find_all(class_ = 'js-navigation-open Link--primary')
-    print(all_folders)
+    for folder in range(len(all_folders)):
+        print(all_folders[folder].get("href"))
     
 if __name__ == '__main__':
     print('Started Scraping')
     get_repositories()
+    
     
