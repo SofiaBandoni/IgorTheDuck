@@ -22,6 +22,7 @@ def get_repositories(github_url):
 
           
 def get_dagfiles(repos):
+    flat_list = []
     for repo in repos:
         url = repo
         response = requests.get(url)
@@ -32,23 +33,21 @@ def get_dagfiles(repos):
         html_content = response.content
         dom = BeautifulSoup(html_content, 'html.parser')
         dagfiles = dom.find_all(class_ = 'js-navigation-open Link--primary')
-        #print(dagfiles)
-        dagfiles_links = []
-        for dagfile in range(len(dagfiles)):
-            dagfiles_links.append("https://github.com" + dagfiles[dagfile].get("href"))
-        print(dagfiles_links)
-        #return(dagfiles_links)
-        
-    
+        links = []
+        for link in range(len(dagfiles)):
+            links.append("https://github.com" + dagfiles[link].get("href")) 
+        flat_list.append(links)
+    return(flat_list)
+
 
 if __name__ == '__main__':
-    print('Started Scraping Main Repository')
+    print('Started Scraping Main Repository...')
     repos = get_repositories(github_url)
     print("These are the folders links in main repository:" )
     print(repos)
-    print("Started Scraping Folders In Main Repository")
+    print("Started Scraping Folders In Main Repository...")
     print("These are the links in folders of main repository: ")
     dagfiles = get_dagfiles(repos)
-    #print("These are de dagfiles links:")
-    #print(dagfiles)
+    print("These are the dagfiles links:")
+    print(dagfiles)
     
