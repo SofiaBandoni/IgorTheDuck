@@ -16,17 +16,18 @@ def get_code(github_url):
     dom = BeautifulSoup(html_content, 'html.parser')
     code_lines = dom.find_all(class_ = 'blob-code blob-code-inner js-file-line')
     #print(code_lines)
-    code = []
-    for line in range(len(code_lines)):
-        code.append(code_lines[line].find_all(class_ = 'pl-k'))
-        code.append(code_lines[line].find_all(class_ = 'pl-c1'))    
+    # code = []
+    # for line in range(len(code_lines)):
+    #     code.append(code_lines[line].find_all(class_ = 'pl-k'))
+    #     code.append(code_lines[line].find_all(class_ = 'pl-c1'))    
     #print(code)
     for line in range(len(code_lines)):
         code = str((code_lines[line].find_all(class_ = 'pl-k'))).replace('<span class="pl-k">', '').replace('</span>','').replace('[','').replace(']','').replace(',', ' ')
         code2= str((code_lines[line].find_all(class_ = 'pl-c1'))).replace('<span class="pl-c1">', '').replace('</span>','').replace('[','').replace(']','').replace(',', ' ')
-    
+        
         print(code + code2)
         
+
     #return(links)
 
 
