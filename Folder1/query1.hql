@@ -1,3 +1,5 @@
+insert into database.insert_table as
+
 select *
 
 from
