@@ -15,14 +15,17 @@ def get_repositories(github_url):
     html_content = response.content
     dom = BeautifulSoup(html_content, 'html.parser')
     all_folders = dom.find_all(class_ = 'js-navigation-open Link--primary')
-    links = []
+    folders_links = []
     for folder in range(len(all_folders)):
-        links.append("https://github.com" + all_folders[folder].get("href"))       
-    return(links)
+        folders_links.append("https://github.com" + all_folders[folder].get("href"))       
+    return(folders_links)
 
           
-def get_dagfiles(repos):
-    flat_list = []
+def get_files(repos):
+    py_files_links = []
+    hql_files_links = []
+    subfolders_links = []
+    
     for repo in repos:
         url = repo
         response = requests.get(url)
@@ -32,12 +35,24 @@ def get_dagfiles(repos):
             return
         html_content = response.content
         dom = BeautifulSoup(html_content, 'html.parser')
-        dagfiles = dom.find_all(class_ = 'js-navigation-open Link--primary')
-        links = []
-        for link in range(len(dagfiles)):
-            links.append("https://github.com" + dagfiles[link].get("href")) 
-        flat_list.append(links)
-    return(flat_list)
+        files = dom.find_all(class_ = 'js-navigation-open Link--primary')
+        for file in range(len(files)):
+            link = ("https://github.com" + files[file].get("href"))
+            if ".py" in link:
+                py_files_links.append(link)
+            elif ".hql" in link:
+                hql_files_links.append(link)
+            else:
+                subfolders_links.append(link)
+    print("Py")
+    print(py_files_links)
+    print("Hql")
+    print(hql_files_links)
+    print("subfolders")
+    print(subfolders_links)
+    # return(py_files_links)
+    # return(hql_files_links)
+    # return(subfolders_links)
 
 
 if __name__ == '__main__':
@@ -47,7 +62,7 @@ if __name__ == '__main__':
     print(repos)
     print("Started Scraping Folders In Main Repository...")
     print("These are the links in folders of main repository: ")
-    dagfiles = get_dagfiles(repos)
+    dagfiles = get_files(repos)
     print("These are the dagfiles links:")
     print(dagfiles)
     
