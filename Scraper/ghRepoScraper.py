@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 # Indicar la url del repositorio a escrapear
 github_url = 'https://github.com/SofiaBandoni/IgorTheDuck'
 
-# Armo una funcion que recorre el repositorio y va a devolver los links de cada carpeta dentro del mismo
+# Funcion que recorre el repositorio y se queda con los links de cada carpeta dentro del mismo
 def get_repositories(github_url):
     url = github_url
     response = requests.get(url)
@@ -44,15 +44,7 @@ def get_files(repos):
                 hql_files_links.append(link)
             else:
                 subfolders_links.append(link)
-    print("Py")
-    print(py_files_links)
-    print("Hql")
-    print(hql_files_links)
-    print("subfolders")
-    print(subfolders_links)
-    # return(py_files_links)
-    # return(hql_files_links)
-    # return(subfolders_links)
+    return(py_files_links, hql_files_links, subfolders_links)
 
 
 if __name__ == '__main__':
@@ -61,8 +53,6 @@ if __name__ == '__main__':
     print("These are the folders links in main repository:" )
     print(repos)
     print("Started Scraping Folders In Main Repository...")
-    print("These are the links in folders of main repository: ")
-    dagfiles = get_files(repos)
-    print("These are the dagfiles links:")
-    print(dagfiles)
-    
+    files = get_files(repos)
+    print("These are the files links:")
+    print(files)
