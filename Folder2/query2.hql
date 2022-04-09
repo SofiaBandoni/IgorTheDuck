@@ -2,11 +2,7 @@ SET hive.exec.dynamic.partition=true;
 
 SET hive.exec.dynamic.partition.mode=nonstrict;
 
- 
-
 REFRESH TABLE data_lake_analytics.tmp_abnpaychannel{{ envCode }};
-
- 
 
 insert overwrite table data_lake_analytics.STG_ABNpagos_m{{ envCode }} partition(periodo, flag_fan)
 
