@@ -17,6 +17,8 @@ def get_repositories(github_url):
     all_folders = dom.find_all(class_ = 'js-navigation-open Link--primary')
     folders_links = []
     for folder in range(len(all_folders)):
+        folder_name = (all_folders[folder].get("title"))
+        print(folder_name)
         folders_links.append("https://github.com" + all_folders[folder].get("href"))       
     return(folders_links)
 
