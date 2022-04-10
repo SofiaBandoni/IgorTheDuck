@@ -22,12 +22,12 @@ def get_repositories(github_url):
         folders_links.append("https://github.com" + all_folders[folder].get("href"))       
     return(folders_links)
 
+
+py_files_links = []
+hql_files_links = []
+subfolders_links = []
           
-def get_files(repos):
-    py_files_links = []
-    hql_files_links = []
-    subfolders_links = []
-    
+def get_files(repos):  
     for repo in repos:
         url = repo
         response = requests.get(url)
@@ -46,7 +46,7 @@ def get_files(repos):
                 hql_files_links.append(link)
             else:
                 subfolders_links.append(link)
-    return(py_files_links, hql_files_links, subfolders_links)
+    # return(py_files_links, hql_files_links, subfolders_links)
 
 
 if __name__ == '__main__':
@@ -57,4 +57,10 @@ if __name__ == '__main__':
     print("Started Scraping Folders In Main Repository...")
     files = get_files(repos)
     print("These are the files links:")
-    print(files)
+    # print(files)
+    print("Python:")
+    print(py_files_links)
+    print("Hql:")
+    print(hql_files_links)
+    print("Other Folders:")
+    print(subfolders_links)
