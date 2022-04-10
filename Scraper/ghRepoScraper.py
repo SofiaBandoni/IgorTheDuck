@@ -46,7 +46,6 @@ def get_files(repos):
                 hql_files_links.append(link)
             else:
                 subfolders_links.append(link)
-    # return(py_files_links, hql_files_links, subfolders_links)
 
 
 if __name__ == '__main__':
@@ -57,7 +56,11 @@ if __name__ == '__main__':
     print("Started Scraping Folders In Main Repository...")
     files = get_files(repos)
     print("These are the files links:")
-    # print(files)
+    while len(subfolders_links) > 0:
+        get_files(subfolders_links)
+        subfolders_links.clear()
+        if len(subfolders_links) == 0:
+            break
     print("Python:")
     print(py_files_links)
     print("Hql:")
