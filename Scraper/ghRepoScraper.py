@@ -49,10 +49,9 @@ def get_files(repos):
             elif ".hql" in link:
                 hql_files_links.append(link)
                 hql_raw_links.append(raw_link)
-            else:
+            else: 
                 subfolders_links.append(link)
                 
-
 
 if __name__ == '__main__':
     print('Started Scraping Main Repository...')
