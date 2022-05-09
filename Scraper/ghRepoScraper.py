@@ -24,7 +24,9 @@ def get_repositories(github_url):
 
 
 py_files_links = []
+py_raw_links = []
 hql_files_links = []
+hql_raw_links = []
 subfolders_links = []
           
 def get_files(repos):  
@@ -40,12 +42,16 @@ def get_files(repos):
         files = dom.find_all(class_ = 'js-navigation-open Link--primary')
         for file in range(len(files)):
             link = ("https://github.com" + files[file].get("href"))
+            raw_link = ("https://raw.githubusercontent.com/" + files[file].get("href")).replace("/blob", '')
             if ".py" in link:
                 py_files_links.append(link)
+                py_raw_links.append(raw_link)
             elif ".hql" in link:
                 hql_files_links.append(link)
+                hql_raw_links.append(raw_link)
             else:
                 subfolders_links.append(link)
+                
 
 
 if __name__ == '__main__':
@@ -63,7 +69,11 @@ if __name__ == '__main__':
             break
     print("Python:")
     print(py_files_links)
+    print("Python Raw:")
+    print(py_raw_links)
     print("Hql:")
     print(hql_files_links)
+    print("Hql Raw:")
+    print(hql_raw_links)
     print("Other Folders:")
     print(subfolders_links)
