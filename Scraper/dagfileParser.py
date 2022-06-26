@@ -21,8 +21,10 @@ dagfile_regex_dict = {'dag' : re.compile(r'(?<=dag_id[\s=|=])\S*', re.IGNORECASE
 
 def dagfile_parser(raw_code):
     for key, value in dagfile_regex_dict.items():
-        match = value.findall(raw_code)
-        print(match)
+        matches = value.findall(raw_code)
+        for match in matches:
+            data = match.replace(' ','').replace('"','').replace('[', '').replace(']', '').replace(',','')
+            print(data)
     
 if __name__ == '__main__':
     raw_code = str(get_raw_code(dagfile_link))
