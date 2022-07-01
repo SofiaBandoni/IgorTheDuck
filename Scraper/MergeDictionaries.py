@@ -45,3 +45,7 @@ py_dict_df = pd.DataFrame(py_dicts)
 hql_dicts_df = pd.DataFrame(hql_dicts)
 merged_df = reduce(lambda x,y: pd.merge(x,y, on='Master Folder Link', how='left'), [repos_df, py_dict_df, hql_dicts_df])
 merged_df.to_excel("df.xlsx")
+
+merged_df = pd.merge(py_dict_df, repos_df, on='master_folder_link', how='left')
+miss_df_bool = (merged_df['master_folder'].isna())
+merged_df[miss_df_bool].to_excel("missmatched.xlsx")
