@@ -47,10 +47,10 @@ merged_df = reduce(lambda x,y: pd.merge(x,y, on='master_folder_link', how='left'
 merged_df.to_excel("df.xlsx")
 
 merged_df_py = pd.merge(py_dict_df, repos_df, on='master_folder_link', how='left')
-miss_df_bool = (merged_df_py['master_folder'].isna())
-merged_df_py[miss_df_bool].to_excel("missmatched_py.xlsx")
+miss_df_bool_py = (merged_df_py['master_folder'].isna())
+merged_df_py[miss_df_bool_py].to_excel("missmatched_py.xlsx")
 
 merged_df_hql = pd.merge(hql_dicts_df, repos_df, on='master_folder_link', how='left')
-miss_df_bool = (merged_df_hql['master_folder'].isna())
-merged_df_hql[miss_df_bool].to_excel("missmatched_hql.xlsx")
+miss_df_bool_hql = (merged_df_hql['master_folder'].isna())
+merged_df_hql[miss_df_bool_hql].to_excel("missmatched_hql.xlsx")
 
